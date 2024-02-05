@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EcommerceLayout extends StatelessWidget {
 
-  //hellow
-  // fk u
+  //hello
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
