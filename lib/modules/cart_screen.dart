@@ -198,6 +198,7 @@ class CartScreen extends StatelessWidget {
 
     },
     child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children:
       [
         SizedBox(
@@ -217,38 +218,43 @@ class CartScreen extends StatelessWidget {
         SizedBox(
           width: getProportionateScreenWidth(20),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-          [
-            Text(
-              cart.product.title,
-              style: TextStyle(
-                fontSize: 16,
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:
+            [
+              Text(
+                cart.product.title,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+                maxLines: 2,
               ),
-              maxLines: 2,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text.rich(
-              TextSpan(
-                  text: '\$${cart.product.price} ',
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
-                  children:
-                  [
-                    TextSpan(
-                      text: 'x${cart.numOfItem}',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                      ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text.rich(
+                TextSpan(
+                    text: '\$${cart.product.price} ',
+                    style: TextStyle(
+                      color: Colors.red,
                     ),
-                  ]
+                    children:
+                    [
+                      TextSpan(
+                        text: 'x${cart.numOfItem}',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ]
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     ),
