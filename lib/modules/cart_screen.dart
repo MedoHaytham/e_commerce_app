@@ -38,27 +38,30 @@ class CartScreen extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            Text(
+            if(demoCarts.isNotEmpty)
+              Text(
               '${demoCarts.length} items',
               style: Theme.of(context).textTheme.caption,
             ),
           ],
         ),
       ),
-      body: Padding(
+      body: demoCarts.isNotEmpty ? Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
         ),
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) => CartProduct(demoCarts[index]),
+          itemBuilder: (context, index) => CartItem(demoCarts[index]),
           separatorBuilder: (context, index) => const SizedBox(
             height: 10,
           ),
           itemCount: demoCarts.length,
         ),
-      ),
-      bottomNavigationBar: Container(
+      ) : const Center(child: Text(
+            'Cart is Empty',
+          )),
+      bottomNavigationBar: demoCarts.isNotEmpty ? Container(
         padding: EdgeInsets.symmetric(
           vertical: getProportionateScreenWidth(15),
           horizontal: getProportionateScreenHeight(30),
@@ -157,10 +160,10 @@ class CartScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ) : const SizedBox.shrink(),
     );
   }
-  Widget CartProduct(
+  Widget CartItem(
       Cart cart
   )=>Dismissible(
     direction: DismissDirection.endToStart,
