@@ -9,6 +9,15 @@ import '../shared/styles/colors.dart';
 
 class CartScreen extends StatelessWidget {
 
+  double calculateTotalPrice(List<Cart> carts) {
+    double totalPrice = 0.0;
+    for (Cart cart in carts)
+    {
+      totalPrice += cart.product.price * cart.numOfItem;
+    }
+    return totalPrice;
+  }
+
   @override
   Widget build(BuildContext context)
   {
@@ -136,7 +145,7 @@ class CartScreen extends StatelessWidget {
                       children:
                       [
                         TextSpan(
-                          text: '\$334',
+                          text: '\$${calculateTotalPrice(demoCarts).toStringAsFixed(2)}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
