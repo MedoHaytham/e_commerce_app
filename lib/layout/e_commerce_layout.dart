@@ -27,25 +27,25 @@ class EcommerceLayout extends StatelessWidget {
               [
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.home,
+                    Icons.home_outlined,
                   ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.favorite,
+                    Icons.favorite_outline,
                   ),
                   label: 'Favorites',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.menu,
+                    Icons.menu_outlined,
                   ),
                   label: 'Categories',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.person,
+                    Icons.person_outline,
                   ),
                   label: 'Profile',
                 ),
