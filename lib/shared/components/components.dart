@@ -169,53 +169,6 @@ Widget customFormField({
   ),
 );
 
-Widget IconBtnCounter({
-  required String svgSrc,
-  required int numOfItems,
-  required GestureTapCallback press,
-})=>InkWell(
-  onTap: press,
-  borderRadius: BorderRadius.circular(50),
-  child: Stack(
-    alignment: Alignment.topRight,
-    children: [
-      Container(
-        padding: EdgeInsets.all(12),
-        height: 46,
-        width: 46,
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.1),
-          shape: BoxShape.circle,
-          border: Border.all(
-              color: KmainColor, width: 1
-          ),
-        ),
-        child: SvgPicture.asset(svgSrc),
-      ),
-      if(numOfItems !=0)
-        Container(
-        height: 16,
-        width: 16,
-        decoration: BoxDecoration(
-          color: Colors.red,
-          shape: BoxShape.circle,
-          border: Border.all(width: 1.5, color: Colors.white),
-        ),
-        child: Center(
-          child: Text('$numOfItems',
-            style: const TextStyle(
-              fontSize: 10,
-              height: 1,
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      ),
-    ],
-  ),
-);
-
 Widget myDivider() => Padding(
   padding: const EdgeInsetsDirectional.symmetric(
     horizontal:20,

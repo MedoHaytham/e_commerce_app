@@ -11,7 +11,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../layout/e_commerce_layout.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatelessWidget
+{
 
   final Product ?product;
 
@@ -20,7 +21,8 @@ class ProductDetailsScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     SizeConfig.init(context);
     return BlocProvider(
       create: (BuildContext context) => EcommerceCubit(),
@@ -321,8 +323,8 @@ class ProductDetailsScreen extends StatelessWidget {
         ),
         child: Text(
           description,
-          style: const TextStyle(
-            color: Colors.grey,
+          style: TextStyle(
+            color: Colors.grey[600],
           ),
           maxLines: EcommerceCubit.get(context).isReadMore ?  null : 3,
           overflow: EcommerceCubit.get(context).isReadMore ? TextOverflow.visible : TextOverflow.ellipsis,

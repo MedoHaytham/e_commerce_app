@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/models/Product_model.dart';
+import 'package:e_commerce_app/models/cart%20model.dart';
 import 'package:e_commerce_app/modules/cart_screen.dart';
 import 'package:e_commerce_app/modules/product_details_screen.dart';
 import 'package:e_commerce_app/shared/components/components.dart';
@@ -10,7 +11,8 @@ import '../layout/cubit/cubit.dart';
 import '../layout/cubit/states.dart';
 import '../shared/styles/colors.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget
+{
 
   @override
   Widget build(BuildContext context)
@@ -46,9 +48,6 @@ class HomeScreen extends StatelessWidget {
 
                               color: Colors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                  color: KmainColor, width: 1
-                              ),
                             ),
                             child: TextField(
                               decoration: InputDecoration(
@@ -72,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         IconBtnCounter(
                           svgSrc: 'assets/images/Cart.svg',
-                          numOfItems: 5,
+                          numOfItems: demoCarts.length,
                           press: ()
                           {
                             navigateTo(context, CartScreen());
@@ -312,6 +311,50 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget IconBtnCounter({
+    required String svgSrc,
+    required int numOfItems,
+    required GestureTapCallback press,
+  })=>InkWell(
+    onTap: press,
+    borderRadius: BorderRadius.circular(50),
+    child: Stack(
+      alignment: Alignment.topRight,
+      children: [
+        Container(
+          padding: EdgeInsets.all(12),
+          height: 46,
+          width: 46,
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: SvgPicture.asset(svgSrc),
+        ),
+        if(numOfItems !=0)
+          Container(
+            height: 16,
+            width: 16,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+              border: Border.all(width: 1.5, color: Colors.white),
+            ),
+            child: Center(
+              child: Text('$numOfItems',
+                style: const TextStyle(
+                  fontSize: 10,
+                  height: 1,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+      ],
+    ),
+  );
+
   Widget CategoryBuilder({
     required String icon,
     required String label,
@@ -332,9 +375,6 @@ class HomeScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFFFFECDF),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                    color: KmainColor, width: 1
-                ),
               ),
               child: SvgPicture.asset(icon),
             ),
