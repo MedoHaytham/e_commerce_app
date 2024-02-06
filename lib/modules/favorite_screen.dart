@@ -54,6 +54,7 @@ class FavoritesScreen extends StatelessWidget {
       Product product,
       bool isFavorite
   )=>isFavorite ? Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children:
     [
       SizedBox(
@@ -75,29 +76,34 @@ class FavoritesScreen extends StatelessWidget {
       ),
       Expanded(
         flex: 4,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-          [
-            Text(
-              product.title,
-              style: TextStyle(
-                fontSize: 16,
-              ),
-              maxLines: 2,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text.rich(
-              TextSpan(
-                text: '\$${product.price} ',
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:
+            [
+              Text(
+                product.title,
                 style: TextStyle(
-                    color: Colors.red,
+                  fontSize: 16,
+                ),
+                maxLines: 2,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text.rich(
+                TextSpan(
+                  text: '\$${product.price} ',
+                  style: TextStyle(
+                      color: Colors.red,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       const Spacer(),
