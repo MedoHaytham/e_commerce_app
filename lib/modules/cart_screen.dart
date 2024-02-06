@@ -63,7 +63,6 @@ class CartScreen extends StatelessWidget {
           vertical: getProportionateScreenWidth(15),
           horizontal: getProportionateScreenHeight(30),
         ),
-        height: 174,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
