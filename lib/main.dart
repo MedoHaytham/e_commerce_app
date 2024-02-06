@@ -16,6 +16,7 @@ void main(){
 
 
   try {
+    WidgetsFlutterBinding.ensureInitialized();
     if(Platform.isWindows)
     {
       WindowManager.instance.setMinimumSize(
