@@ -16,6 +16,7 @@ class EcommerceLayout extends StatelessWidget {
         {
           var cubit = EcommerceCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               onTap: (index)

@@ -14,19 +14,10 @@ class FavoritesScreen extends StatelessWidget {
   {
     SizeConfig.init(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor:Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          highlightColor: Colors.transparent,
-          onPressed: () {
-            navigateTo(context, EcommerceLayout());
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-        ),
         centerTitle: true,
         title: Text(
           'My Favorites',

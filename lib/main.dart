@@ -43,6 +43,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          elevation: 0,
           selectedItemColor: KmainColor,
           unselectedItemColor: Colors.grey,
           enableFeedback: false,

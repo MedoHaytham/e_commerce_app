@@ -107,7 +107,10 @@ class CartScreen extends StatelessWidget {
                       color: Color(0xFFF5F6F9),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: SvgPicture.asset('assets/images/receipt.svg'),
+                    child: SvgPicture.asset(
+                      'assets/images/receipt.svg',
+                      color: KmainColor,
+                    ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
