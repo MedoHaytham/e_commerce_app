@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/modules/product_details_screen.dart';
 import 'package:e_commerce_app/modules/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +33,9 @@ class FavoritesScreen extends StatelessWidget {
         ),
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) => FavoriteItem(demoProducts[index], demoProducts[index].isFavourite),
+          itemBuilder: (context, index) => FavoriteItem(demoProducts[index], demoProducts[index].isFavourite, context),
           separatorBuilder: (context, index) => demoProducts[index].isFavourite ? const SizedBox(
-            height: 10,
+            height: 20,
           ) : const SizedBox(
             height: 0,
           ),
@@ -45,12 +46,13 @@ class FavoritesScreen extends StatelessWidget {
   }
   Widget FavoriteItem(
       Product product,
-      bool isFavorite
+      bool isFavorite,
+      BuildContext context,
   )=>isFavorite ? InkWell(
     borderRadius: BorderRadius.circular(15),
     onTap: ()
     {
-
+      navigateTo(context, ProductDetailsScreen(product: product));
     },
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
