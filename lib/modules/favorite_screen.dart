@@ -33,8 +33,10 @@ class FavoritesScreen extends StatelessWidget {
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => FavoriteItem(demoProducts[index], demoProducts[index].isFavourite),
-          separatorBuilder: (context, index) => const SizedBox(
+          separatorBuilder: (context, index) => demoProducts[index].isFavourite ? const SizedBox(
             height: 10,
+          ) : const SizedBox(
+            height: 0,
           ),
           itemCount: demoProducts.length,
         ),
@@ -44,83 +46,90 @@ class FavoritesScreen extends StatelessWidget {
   Widget FavoriteItem(
       Product product,
       bool isFavorite
-  )=>isFavorite ? Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children:
-    [
-      SizedBox(
-        width: getProportionateScreenWidth(88),
-        child: AspectRatio(
-          aspectRatio: 0.88,
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color(0xFFF5F6F9),
+  )=>isFavorite ? InkWell(
+    borderRadius: BorderRadius.circular(15),
+    onTap: ()
+    {
+
+    },
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:
+      [
+        SizedBox(
+          width: getProportionateScreenWidth(88),
+          child: AspectRatio(
+            aspectRatio: 0.88,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color(0xFFF5F6F9),
+              ),
+              child: Image.asset(product.images[0]),
             ),
-            child: Image.asset(product.images[0]),
           ),
         ),
-      ),
-      SizedBox(
-        width: getProportionateScreenWidth(20),
-      ),
-      Expanded(
-        flex: 4,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: 10,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:
-            [
-              Text(
-                product.title,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-                maxLines: 2,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text.rich(
-                TextSpan(
-                  text: '\$${product.price} ',
+        SizedBox(
+          width: getProportionateScreenWidth(20),
+        ),
+        Expanded(
+          flex: 4,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:
+              [
+                Text(
+                  product.title,
                   style: TextStyle(
-                      color: Colors.red,
+                    fontSize: 16,
+                  ),
+                  maxLines: 2,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text.rich(
+                  TextSpan(
+                    text: '\$${product.price} ',
+                    style: TextStyle(
+                        color: Colors.red,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      const Spacer(),
-      Expanded(
-        flex: 1,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(28),
-          onTap: ()
-          {
+        const Spacer(),
+        Expanded(
+          flex: 1,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(28),
+            onTap: ()
+            {
 
-          },
-          child: Container(
-            padding: const EdgeInsets.all(7),
-            width: 28,
-            height: 28,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xBDBDBD).withOpacity(0.1),
-            ),
-            child: SvgPicture.asset(
-              product.isFavourite ? 'assets/images/HeartIcon_2.svg' :'assets/images/HeartIcon.svg',
-              color: Colors.red,
+            },
+            child: Container(
+              padding: const EdgeInsets.all(7),
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: const Color(0xBDBDBD).withOpacity(0.1),
+              ),
+              child: SvgPicture.asset(
+                product.isFavourite ? 'assets/images/HeartIcon_2.svg' :'assets/images/HeartIcon.svg',
+                color: Colors.red,
+              ),
             ),
           ),
         ),
-      ),
-    ],
+      ],
+    ),
   ) : const SizedBox.shrink();
 }
