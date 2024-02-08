@@ -22,7 +22,6 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state)
         {
-
           var cubit = LoginCubit.get(context);
           return Scaffold(
             body: Container(
@@ -46,6 +45,7 @@ class LoginScreen extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Container(
                           width: double.infinity,
+                          height: MediaQuery.sizeOf(context).height - 230,
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(

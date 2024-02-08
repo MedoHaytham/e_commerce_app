@@ -177,89 +177,96 @@ class CartScreen extends StatelessWidget {
   }
   Widget CartItem(
       Cart cart
-  )=>Dismissible(
-    direction: DismissDirection.endToStart,
-    key: UniqueKey(),
-    background: Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-      ),
-      decoration: BoxDecoration(
-        color: Color(0xFFFFE6E6),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Row(
-        children:
-        [
-          const Spacer(),
-          SvgPicture.asset('assets/images/Trash.svg'),
-        ],
-      ),
-    ),
-    onDismissed: (direction)
+  )=>InkWell(
+    borderRadius: BorderRadius.circular(15),
+    onTap: ()
     {
 
     },
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children:
-      [
-        SizedBox(
-          width: getProportionateScreenWidth(88),
-          child: AspectRatio(
-            aspectRatio: 0.88,
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Color(0xFFF5F6F9),
+    child: Dismissible(
+      direction: DismissDirection.endToStart,
+      key: UniqueKey(),
+      background: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        decoration: BoxDecoration(
+          color: Color(0xFFFFE6E6),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Row(
+          children:
+          [
+            const Spacer(),
+            SvgPicture.asset('assets/images/Trash.svg'),
+          ],
+        ),
+      ),
+      onDismissed: (direction)
+      {
+
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:
+        [
+          SizedBox(
+            width: getProportionateScreenWidth(88),
+            child: AspectRatio(
+              aspectRatio: 0.88,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color(0xFFF5F6F9),
+                ),
+                child: Image.asset(cart.product.images[0]),
               ),
-              child: Image.asset(cart.product.images[0]),
             ),
           ),
-        ),
-        SizedBox(
-          width: getProportionateScreenWidth(20),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 10,
+          SizedBox(
+            width: getProportionateScreenWidth(20),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:
-            [
-              Text(
-                cart.product.title,
-                style: TextStyle(
-                  fontSize: 16,
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:
+              [
+                Text(
+                  cart.product.title,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                  maxLines: 2,
                 ),
-                maxLines: 2,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text.rich(
-                TextSpan(
-                    text: '\$${cart.product.price} ',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                    children:
-                    [
-                      TextSpan(
-                        text: 'x${cart.numOfItem}',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                        ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text.rich(
+                  TextSpan(
+                      text: '\$${cart.product.price} ',
+                      style: TextStyle(
+                        color: Colors.red,
                       ),
-                    ]
+                      children:
+                      [
+                        TextSpan(
+                          text: 'x${cart.numOfItem}',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ]
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

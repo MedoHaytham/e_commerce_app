@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../shared/styles/colors.dart';
+
 class EcommerceLayout extends StatelessWidget {
 
   @override
@@ -14,43 +16,72 @@ class EcommerceLayout extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state)
         {
+          Size size = MediaQuery.of(context).size;
           var cubit = EcommerceCubit.get(context);
           return Scaffold(
             backgroundColor: Colors.white,
             body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: (index)
-              {
-                cubit.changeBottom(index);
-              },
-              currentIndex: cubit.currentIndex,
-              items:
-              [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home_outlined,
-                  ),
-                  label: 'Home',
+            bottomNavigationBar: Container(
+              alignment:Alignment.center,
+              height: 360 * 0.155,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow:
+                  [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.15),
+                      blurRadius: 30,
+                      offset: Offset(0, 10),
+                    ),
+                  ]
+              ),
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.favorite_outline,
+                itemBuilder: (context, index) => InkWell(
+                  onTap: () {
+                    cubit.changeBottom(index);
+                    print(size.width);
+                  },
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:
+                    [
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 1500),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                        margin: EdgeInsets.only(
+                          bottom: index == cubit.currentIndex ? 0 : 360 * 0.029,
+                          right: size.width * 0.0422,
+                          left: size.width * 0.0422,
+                        ),
+                        width: size.width * 0.128,
+                        height: index == cubit.currentIndex ? 360 * 0.014 : 0,
+                        decoration: BoxDecoration(
+                            color: KmainColor,
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(10),
+                            )
+                        ),
+                      ),
+                      Icon(
+                        cubit.icons[index],
+                        size: 360 * 0.076,
+                        color: index == cubit.currentIndex ? KmainColor : Colors.black38,
+                      ),
+                      SizedBox(
+                        height: 360 * 0.03,
+                      ),
+                    ],
                   ),
-                  label: 'Favorites',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.menu_outlined,
-                  ),
-                  label: 'Categories',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person_outline,
-                  ),
-                  label: 'Profile',
-                ),
-              ],
+                itemCount: cubit.screens.length,
+              ),
             ),
           );
         },

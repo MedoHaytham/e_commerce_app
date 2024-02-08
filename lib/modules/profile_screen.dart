@@ -86,6 +86,7 @@ class ProfileScreen extends StatelessWidget
         width: 115,
         height: 115,
         child: CircleAvatar(
+          backgroundColor: Colors.transparent,
           backgroundImage: AssetImage(
             'assets/images/geralt.jpg',
           ),
@@ -97,6 +98,7 @@ class ProfileScreen extends StatelessWidget
         child: MaterialButton(
           padding: EdgeInsets.zero,
           elevation: 0,
+          highlightElevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
             side: BorderSide(
@@ -104,7 +106,10 @@ class ProfileScreen extends StatelessWidget
             ),
           ),
           color: Color(0xFFF5F6F9),
-          onPressed: () { },
+          onPressed: ()
+          {
+
+          },
           child: SvgPicture.asset(image),
         ),
       ),

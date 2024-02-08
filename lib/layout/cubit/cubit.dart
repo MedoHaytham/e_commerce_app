@@ -23,6 +23,14 @@ class EcommerceCubit extends Cubit<EcommerceStates>
     ProfileScreen(),
   ];
 
+  List<IconData> icons =
+  [
+    Icons.home_outlined,
+    Icons.favorite_outline,
+    Icons.menu_outlined,
+    Icons.person_outline,
+  ];
+
   void changeBottom(int index)
   {
     currentIndex = index;
