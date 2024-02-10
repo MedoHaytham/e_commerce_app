@@ -3,6 +3,7 @@ import 'package:e_commerce_app/layout/cubit/states.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../shared/styles/colors.dart';
 
@@ -53,12 +54,10 @@ class EcommerceLayout extends StatelessWidget {
                     children:
                     [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 1500),
+                        duration: const Duration(milliseconds: 1500),
                         curve: Curves.fastLinearToSlowEaseIn,
-                        margin: EdgeInsets.only(
-                          bottom: index == cubit.currentIndex ? 0 : 360 * 0.029,
-                          right: size.width * 0.0422,
-                          left: size.width * 0.0422,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.0422,
                         ),
                         width: size.width * 0.128,
                         height: index == cubit.currentIndex ? 360 * 0.014 : 0,
@@ -69,9 +68,9 @@ class EcommerceLayout extends StatelessWidget {
                             )
                         ),
                       ),
-                      Icon(
+                      SvgPicture.asset(
                         cubit.icons[index],
-                        size: 360 * 0.076,
+                        width: 360 * 0.076,
                         color: index == cubit.currentIndex ? KmainColor : Colors.black38,
                       ),
                       SizedBox(

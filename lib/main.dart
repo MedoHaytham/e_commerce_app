@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 import 'layout/e_commerce_layout.dart';
-import 'modules/home_screen.dart';
 
 void main(){
 
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
           showUnselectedLabels: false,
         ),
       ),
-      home: LoginScreen(),
+      home: EcommerceLayout(),
     );
   }
 }

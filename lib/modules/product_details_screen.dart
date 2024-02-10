@@ -88,11 +88,11 @@ class ProductDetailsScreen extends StatelessWidget
                                     child: ListView.separated(
                                       shrinkWrap: true,
                                       scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) => ColorSelceted(color: product!.colors[index], index: index, context: context),
+                                      itemBuilder: (context, index) => ColorSelceted(color: product!.colors![index], index: index, context: context),
                                       separatorBuilder: (context, index) => const SizedBox(
                                         width: 2,
                                       ),
-                                      itemCount: product!.colors.length,
+                                      itemCount: product!.colors!.length,
                                     ),
                                   ),
                                   const Spacer(),

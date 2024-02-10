@@ -54,9 +54,12 @@ class HomeScreen extends StatelessWidget
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   hintText: 'Search product',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black38,
+                                  ),
                                   prefixIcon: Icon(
                                     Icons.search,
-                                    color: Colors.grey,
+                                    color: Colors.black38,
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
                                     horizontal: 16,
@@ -170,7 +173,7 @@ class HomeScreen extends StatelessWidget
                                   ),
 
                                   CategoryBuilder(
-                                    icon: 'assets/images/Discover.svg',
+                                    icon: 'assets/images/compass.svg',
                                     label: 'More',
                                     press: () {  },
                                   ),
@@ -329,7 +332,10 @@ class HomeScreen extends StatelessWidget
             color: Colors.grey.withOpacity(0.1),
             shape: BoxShape.circle,
           ),
-          child: SvgPicture.asset(svgSrc),
+          child: SvgPicture.asset(
+            svgSrc,
+            color: Colors.black38,
+          ),
         ),
         if(numOfItems !=0)
           Container(
@@ -341,7 +347,8 @@ class HomeScreen extends StatelessWidget
               border: Border.all(width: 1.5, color: Colors.white),
             ),
             child: Center(
-              child: Text('$numOfItems',
+              child: Text(
+                '$numOfItems',
                 style: const TextStyle(
                   fontSize: 10,
                   height: 1,

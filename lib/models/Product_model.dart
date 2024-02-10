@@ -4,14 +4,14 @@ class Product {
   final int id;
   final String title, description;
   final List<String> images;
-  final List<Color> colors;
+  final List<Color> ?colors;
   final double rating, price;
   final bool isFavourite, isPopular, inCart;
 
   Product({
     required this.id,
     required this.images,
-    required this.colors,
+    this.colors,
     this.rating = 0.0,
     this.isFavourite = false,
     this.isPopular = false,
@@ -73,7 +73,8 @@ List<Product> demoProducts = [
     [
       "assets/images/glap.png",
     ],
-    colors: [
+    colors:
+    [
       const Color(0xFFF6625E),
       const Color(0xFF836DB8),
       const Color(0xFFDECB9C),

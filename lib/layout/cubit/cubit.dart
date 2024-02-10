@@ -6,6 +6,9 @@ import 'package:e_commerce_app/modules/favorite_screen.dart';
 import 'package:e_commerce_app/modules/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../modules/cart_screen.dart';
 
 class EcommerceCubit extends Cubit<EcommerceStates>
 {
@@ -18,17 +21,17 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   List<Widget> screens =
   [
     HomeScreen(),
-    FavoritesScreen(),
+    CartScreen(),
     CategoriesScreen(),
     ProfileScreen(),
   ];
 
-  List<IconData> icons =
+  List<String> icons =
   [
-    Icons.home_outlined,
-    Icons.favorite_outline,
-    Icons.menu_outlined,
-    Icons.person_outline,
+    'assets/images/shop.svg',
+    'assets/images/Cart.svg',
+    'assets/images/compass.svg',
+    'assets/images/User_Icon.svg',
   ];
 
   void changeBottom(int index)
