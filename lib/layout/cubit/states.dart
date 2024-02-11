@@ -14,3 +14,9 @@ class MinusCounterState extends EcommerceStates{}
 
 class ChangeReadButtonState extends EcommerceStates{}
 
+class ChangeDarkModeButtonState extends EcommerceStates{}
+
+class ChangeManState extends EcommerceStates{}
+
+class ChangeWomanState extends EcommerceStates{}
+

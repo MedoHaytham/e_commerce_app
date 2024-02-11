@@ -10,4 +10,4 @@ final myGradient = LinearGradient(
   ],
 );
 
-const KmainColor = Colors.deepPurpleAccent;
+const KmainColor = Colors.deepPurple;

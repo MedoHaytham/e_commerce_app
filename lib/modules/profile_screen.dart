@@ -1,7 +1,13 @@
+import 'package:e_commerce_app/layout/cubit/cubit.dart';
+import 'package:e_commerce_app/layout/cubit/states.dart';
+import 'package:e_commerce_app/modules/user_screen.dart';
+import 'package:e_commerce_app/shared/components/components.dart';
 import 'package:e_commerce_app/shared/styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ionicons/ionicons.dart';
 
 class ProfileScreen extends StatelessWidget
 {
@@ -9,146 +15,141 @@ class ProfileScreen extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          'Profile',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: Column(
-        children:
-        [
-          ProfilePic(
-            image: 'assets/images/Camera_Icon.svg',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ProfileMenu(
-            icon: 'assets/images/User_Icon.svg',
-            text: 'My account',
-            press: ()
-            {
+    return BlocProvider(
+      create: (context) => EcommerceCubit(),
+      child: BlocConsumer<EcommerceCubit, EcommerceStates>(
+        listener: (context, state) {},
+        builder: (context, state)
+        {
+          var cubit = EcommerceCubit.get(context);
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'Profile',
+              ),
+            ),
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:
+                  [
+                    Text(
+                      'Account',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    AccountItem(
+                      image: 'assets/images/geralt.jpg',
+                      press: ()
+                      {
+                        navigateTo(context, UserScreen());
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Settings',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SettingsItem(
+                      title: 'Language',
+                      icon: Ionicons.earth,
+                      value: 'English',
+                      press: ()
+                      {
 
-            },
-          ),
-          ProfileMenu(
-            icon: 'assets/images/Bell.svg',
-            text: 'Notifications',
-            press: ()
-            {
+                      },
+                    ),
+                    SettingsItem(
+                      title: 'Notifications',
+                      icon: Ionicons.notifications_outline,
+                      press: ()
+                      {
 
-            },
-          ),
-          ProfileMenu(
-            icon: 'assets/images/Settings.svg',
-            text: 'Settings',
-            press: ()
-            {
+                      },
+                    ),
+                    SettingsItem(
+                      title: 'Help Center',
+                      icon: Ionicons.nuclear_outline,
+                      press: ()
+                      {
 
-            },
-          ),
-          ProfileMenu(
-            icon: 'assets/images/Question_mark.svg',
-            text: 'Help Center',
-            press: ()
-            {
+                      },
+                    ),
+                    SettingsSwitch(
+                      title: 'Dark Mode',
+                      icon: Ionicons.moon_outline,
+                      isDark: cubit.isDark,
+                      context: context,
+                      onTap: (isDark)
+                      {
+                        cubit.changeDarkModeButton();
+                      },
+                    ),
+                    SettingsItem(
+                      title: 'Log out',
+                      icon: Ionicons.log_out_outline,
+                      press: ()
+                      {
 
-            },
-          ),
-          ProfileMenu(
-            icon: 'assets/images/Log_out.svg',
-            text: 'Log Out',
-            press: ()
-            {
-
-            },
-          ),
-        ],
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
-  Widget ProfilePic({
-    required String image
-  }) => Stack(
-    alignment: Alignment.bottomRight,
-    children:
-    [
-      SizedBox(
-        width: 115,
-        height: 115,
-        child: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage(
-            'assets/images/geralt.jpg',
-          ),
-        ),
-      ),
-      SizedBox(
-        width: 46,
-        height: 46,
-        child: MaterialButton(
-          padding: EdgeInsets.zero,
-          elevation: 0,
-          highlightElevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-            side: BorderSide(
-              color: Colors.white,
-            ),
-          ),
-          color: Color(0xFFF5F6F9),
-          onPressed: ()
-          {
-
-          },
-          child: SvgPicture.asset(image),
-        ),
-      ),
-    ],
-  );
-
-  Widget ProfileMenu({
-    required String icon,
-    required String text,
+  Widget AccountItem({
+    required String image,
     required GestureTapCallback press,
-  }) => Padding(
-    padding: const EdgeInsets.symmetric(
-      horizontal: 20,
-      vertical: 10,
-    ),
-    child: MaterialButton(
-      highlightElevation: 0,
-      padding: EdgeInsets.all(20),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 0,
-      color: Color(0xFFF5F6F9),
-      onPressed: press,
+  }) => InkWell(
+    onTap: press,
+    child: Container(
+      width: double.infinity,
       child: Row(
         children:
         [
-          SvgPicture.asset(
-            icon,
-            color: KmainColor,
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Text(
-              text,
+          SizedBox(
+            width: 70,
+            height: 70,
+            child: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              backgroundImage: AssetImage(
+                image,
+              ),
             ),
           ),
+          SizedBox(
+            width: 20,
+          ),
+          Text(
+            'User Name',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Spacer(),
           Icon(
             Icons.arrow_forward_ios,
           ),
@@ -156,5 +157,122 @@ class ProfileScreen extends StatelessWidget
       ),
     ),
   );
+
+  Widget SettingsItem({
+    required String title,
+    required IconData icon,
+    required GestureTapCallback press,
+    String? value,
+  })=> InkWell(
+    onTap: press,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+      ),
+      child: Container(
+        width: double.infinity,
+        child: Row(
+          children:
+          [
+            Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFF5F6F9),
+              ),
+              child: Icon(
+                icon,
+                color: KmainColor,
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const Spacer(),
+            if(value != null)
+              Text(
+                value,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+            const SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  Widget SettingsSwitch({
+    required String title,
+    required IconData icon,
+    required bool isDark,
+    required BuildContext context,
+    required Function(bool isDark) onTap,
+  })=> Padding(
+    padding: const EdgeInsets.symmetric(
+      vertical: 10,
+    ),
+    child: Container(
+      width: double.infinity,
+      child: Row(
+        children:
+        [
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFFF5F6F9),
+            ),
+            child: Icon(
+              icon,
+              color: KmainColor,
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Spacer(),
+          Text(
+            isDark ? 'On': 'Off',
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          CupertinoSwitch(
+            value: isDark,
+            onChanged: onTap,
+          ),
+        ],
+      ),
+    ),
+  );
+
 }
 

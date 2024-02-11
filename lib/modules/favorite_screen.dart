@@ -8,23 +8,15 @@ import '../models/Product_model.dart';
 import '../shared/components/components.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context)
   {
     SizeConfig.init(context);
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor:Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
         title: Text(
           'My Favorites',
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
       ),
       body: Padding(

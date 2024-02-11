@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../models/cart model.dart';
 import '../shared/styles/colors.dart';
 
 class EcommerceLayout extends StatelessWidget {
@@ -20,7 +21,6 @@ class EcommerceLayout extends StatelessWidget {
           Size size = MediaQuery.of(context).size;
           var cubit = EcommerceCubit.get(context);
           return Scaffold(
-            backgroundColor: Colors.white,
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: Container(
               alignment:Alignment.center,
@@ -39,13 +39,12 @@ class EcommerceLayout extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 20,
                 ),
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
                     cubit.changeBottom(index);
-                    print(size.width);
                   },
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
@@ -68,12 +67,41 @@ class EcommerceLayout extends StatelessWidget {
                             )
                         ),
                       ),
-                      SvgPicture.asset(
-                        cubit.icons[index],
-                        width: 360 * 0.076,
-                        color: index == cubit.currentIndex ? KmainColor : Colors.black38,
+                      Stack(
+                        alignment: Alignment.topCenter,
+                        children:
+                        [
+                          if(demoCarts.isNotEmpty && index == 1)
+                            Container(
+                              margin: EdgeInsets.only(
+                                left: 3,
+                              ),
+                              height: 15,
+                              width: 15,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '${demoCarts.length}',
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    height: 1,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          SvgPicture.asset(
+                            cubit.icons[index],
+                            width: 360 * 0.076,
+                            color: index == cubit.currentIndex ? KmainColor : Colors.black38,
+                          ),
+                        ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 360 * 0.03,
                       ),
                     ],

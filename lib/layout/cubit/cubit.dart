@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../modules/cart_screen.dart';
+import '../../modules/cart_screen_bottom.dart';
 
 class EcommerceCubit extends Cubit<EcommerceStates>
 {
@@ -21,15 +22,15 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   List<Widget> screens =
   [
     HomeScreen(),
-    CartScreen(),
-    CategoriesScreen(),
+    CartScreenBottm(),
+    FavoritesScreen(),
     ProfileScreen(),
   ];
 
   List<String> icons =
   [
     'assets/images/shop.svg',
-    'assets/images/Cart.svg',
+    'assets/images/Shopping_cart.svg',
     'assets/images/compass.svg',
     'assets/images/User_Icon.svg',
   ];
@@ -80,5 +81,26 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   {
     isReadMore = !isReadMore;
     emit(ChangeReadButtonState());
+  }
+
+  bool isDark = false;
+
+  void changeDarkModeButton()
+  {
+    isDark = !isDark;
+    emit(ChangeDarkModeButtonState());
+  }
+
+  String gender = 'man';
+  void changeGenderToMan()
+  {
+    gender = 'man';
+    emit(ChangeManState());
+  }
+
+  void changeGenderToWoman()
+  {
+    gender = 'woman';
+    emit(ChangeWomanState());
   }
 }
