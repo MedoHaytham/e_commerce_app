@@ -103,8 +103,8 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   void changeGenderToWoman()
   {
     gender = 'woman';
-  }    emit(ChangeWomanState());
-
+    emit(ChangeWomanState());
+  }
 
   Color ?backColor, iconColor, focusColor;
 
