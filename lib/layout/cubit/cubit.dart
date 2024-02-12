@@ -7,6 +7,7 @@ import 'package:e_commerce_app/modules/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../../modules/cart_screen.dart';
 import '../../modules/cart_screen_bottom.dart';
@@ -88,6 +89,7 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   void changeDarkModeButton()
   {
     isDark = !isDark;
+    changeColorToDark();
     emit(ChangeDarkModeButtonState());
   }
 
@@ -101,6 +103,24 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   void changeGenderToWoman()
   {
     gender = 'woman';
-    emit(ChangeWomanState());
+  }    emit(ChangeWomanState());
+
+
+  Color ?backColor, iconColor, focusColor;
+
+  void changeColorToDark()
+  {
+    if(isDark)
+    {
+      backColor = HexColor('333739');
+      focusColor = Colors.white;
+      iconColor = Colors.grey;
+    }
+    else
+    {
+      backColor = Colors.white;
+      iconColor = Colors.grey;
+      focusColor = Colors.purple;
+    }
   }
 }

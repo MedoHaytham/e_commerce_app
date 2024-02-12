@@ -3,7 +3,6 @@ import 'package:e_commerce_app/layout/cubit/states.dart';
 import 'package:e_commerce_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionicons/ionicons.dart';
 
 class UserScreen extends StatelessWidget {
 
@@ -44,7 +43,7 @@ class UserScreen extends StatelessWidget {
                     child: IconButton(
                       onPressed: () { },
                       icon: Icon(
-                        Ionicons.checkmark,
+                        Icons.check,
                         color: Colors.white,
                       ),
                     ),
@@ -124,7 +123,7 @@ class UserScreen extends StatelessWidget {
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
-                                Ionicons.male_outline,
+                                Icons.male_outlined,
                                 color: cubit.gender == 'man' ? Colors.white : Colors.black,
                                 size: 18,
                               ),
@@ -147,7 +146,7 @@ class UserScreen extends StatelessWidget {
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
-                                Ionicons.female_outline,
+                                Icons.female_outlined,
                                 color: cubit.gender == 'woman' ? Colors.white : Colors.black,
                                 size: 18,
                               ),

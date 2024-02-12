@@ -26,7 +26,7 @@ class EcommerceLayout extends StatelessWidget {
               alignment:Alignment.center,
               height: 360 * 0.155,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: cubit.backColor,
                   boxShadow:
                   [
                     BoxShadow(
@@ -97,7 +97,7 @@ class EcommerceLayout extends StatelessWidget {
                           SvgPicture.asset(
                             cubit.icons[index],
                             width: 360 * 0.076,
-                            color: index == cubit.currentIndex ? KmainColor : Colors.black38,
+                            color: index == cubit.currentIndex ? cubit.focusColor : cubit.iconColor,
                           ),
                         ],
                       ),
