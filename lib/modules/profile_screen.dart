@@ -2,15 +2,16 @@ import 'package:e_commerce_app/layout/cubit/cubit.dart';
 import 'package:e_commerce_app/layout/cubit/states.dart';
 import 'package:e_commerce_app/modules/user_screen.dart';
 import 'package:e_commerce_app/shared/components/components.dart';
+import 'package:e_commerce_app/shared/cubit/cubit.dart';
 import 'package:e_commerce_app/shared/styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ionicons/ionicons.dart';
 
 class ProfileScreen extends StatelessWidget
 {
+  const ProfileScreen({super.key});
+
 
   @override
   Widget build(BuildContext context)
@@ -24,7 +25,7 @@ class ProfileScreen extends StatelessWidget
           var cubit = EcommerceCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text(
+              title: const Text(
                 'Profile',
               ),
             ),
@@ -36,7 +37,7 @@ class ProfileScreen extends StatelessWidget
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:
                   [
-                    Text(
+                    const Text(
                       'Account',
                       style: TextStyle(
                         fontSize: 24,
@@ -50,13 +51,13 @@ class ProfileScreen extends StatelessWidget
                       image: 'assets/images/geralt.jpg',
                       press: ()
                       {
-                        navigateTo(context, UserScreen());
+                        navigateTo(context, const UserScreen());
                       },
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
+                    const Text(
                       'Settings',
                       style: TextStyle(
                         fontSize: 24,
@@ -68,7 +69,7 @@ class ProfileScreen extends StatelessWidget
                     ),
                     SettingsItem(
                       title: 'Language',
-                      icon: Ionicons.earth,
+                      icon: Icons.language_outlined,
                       value: 'English',
                       press: ()
                       {
@@ -77,7 +78,7 @@ class ProfileScreen extends StatelessWidget
                     ),
                     SettingsItem(
                       title: 'Notifications',
-                      icon: Ionicons.notifications_outline,
+                      icon: Icons.notifications_on_outlined,
                       press: ()
                       {
 
@@ -85,7 +86,7 @@ class ProfileScreen extends StatelessWidget
                     ),
                     SettingsItem(
                       title: 'Help Center',
-                      icon: Ionicons.nuclear_outline,
+                      icon: Icons.help_outline,
                       press: ()
                       {
 
@@ -93,17 +94,23 @@ class ProfileScreen extends StatelessWidget
                     ),
                     SettingsSwitch(
                       title: 'Dark Mode',
-                      icon: Ionicons.moon_outline,
-                      isDark: cubit.isDark,
+                      icon: Icons.brightness_2_outlined,
+                      isDark: AppCubit.get(context).isDark,
                       context: context,
                       onTap: (isDark)
                       {
-                        cubit.changeDarkModeButton();
+                        EcommerceCubit.get(context).changeDarkModeButton();
+                        AppCubit.get(context).changeAppMode();
+                      },
+                      press: ()
+                      {
+                        EcommerceCubit.get(context).changeDarkModeButton();
+                        AppCubit.get(context).changeAppMode();
                       },
                     ),
                     SettingsItem(
                       title: 'Log out',
-                      icon: Ionicons.log_out_outline,
+                      icon: Icons.logout_outlined,
                       press: ()
                       {
 
@@ -124,7 +131,7 @@ class ProfileScreen extends StatelessWidget
     required GestureTapCallback press,
   }) => InkWell(
     onTap: press,
-    child: Container(
+    child: SizedBox(
       width: double.infinity,
       child: Row(
         children:
@@ -139,18 +146,18 @@ class ProfileScreen extends StatelessWidget
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
-          Text(
+          const Text(
             'User Name',
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
           ),
-          Spacer(),
-          Icon(
+          const Spacer(),
+          const Icon(
             Icons.arrow_forward_ios,
           ),
         ],
@@ -169,7 +176,7 @@ class ProfileScreen extends StatelessWidget
       padding: const EdgeInsets.symmetric(
         vertical: 10,
       ),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Row(
           children:
@@ -177,7 +184,7 @@ class ProfileScreen extends StatelessWidget
             Container(
               height: 50,
               width: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Color(0xFFF5F6F9),
               ),
@@ -191,7 +198,7 @@ class ProfileScreen extends StatelessWidget
             ),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
@@ -200,7 +207,7 @@ class ProfileScreen extends StatelessWidget
             if(value != null)
               Text(
                 value,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                 ),
@@ -208,7 +215,7 @@ class ProfileScreen extends StatelessWidget
             const SizedBox(
               width: 20,
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
             ),
           ],
@@ -223,53 +230,57 @@ class ProfileScreen extends StatelessWidget
     required bool isDark,
     required BuildContext context,
     required Function(bool isDark) onTap,
-  })=> Padding(
-    padding: const EdgeInsets.symmetric(
-      vertical: 10,
-    ),
-    child: Container(
-      width: double.infinity,
-      child: Row(
-        children:
-        [
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFFF5F6F9),
+    required GestureTapCallback press,
+  })=> InkWell(
+    onTap: press,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+      ),
+      child: SizedBox(
+        width: double.infinity,
+        child: Row(
+          children:
+          [
+            Container(
+              height: 50,
+              width: 50,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFF5F6F9),
+              ),
+              child: Icon(
+                icon,
+                color: KmainColor,
+              ),
             ),
-            child: Icon(
-              icon,
-              color: KmainColor,
+            const SizedBox(
+              width: 20,
             ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          const Spacer(),
-          Text(
-            isDark ? 'On': 'Off',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
+            const Spacer(),
+            Text(
+              isDark ? 'On': 'Off',
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
             ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          CupertinoSwitch(
-            value: isDark,
-            onChanged: onTap,
-          ),
-        ],
+            const SizedBox(
+              width: 20,
+            ),
+            CupertinoSwitch(
+              value: isDark,
+              onChanged: onTap,
+            ),
+          ],
+        ),
       ),
     ),
   );

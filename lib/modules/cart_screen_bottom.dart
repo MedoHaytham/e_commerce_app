@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/layout/e_commerce_layout.dart';
 import 'package:e_commerce_app/models/cart%20model.dart';
 import 'package:e_commerce_app/modules/size_config.dart';
 import 'package:e_commerce_app/shared/components/components.dart';
@@ -8,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../shared/styles/colors.dart';
 
 class CartScreenBottm extends StatelessWidget {
+  const CartScreenBottm({super.key});
+
 
   double calculateTotalPrice(List<Cart> carts) {
     double totalPrice = 0.0;
@@ -28,13 +29,13 @@ class CartScreenBottm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children:
           [
-            Text(
+            const Text(
               'Your cart',
             ),
             if(demoCarts.isNotEmpty)
               Text(
                 '${demoCarts.length} items',
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
           ],
         ),
@@ -60,16 +61,16 @@ class CartScreenBottm extends StatelessWidget {
           horizontal: getProportionateScreenHeight(30),
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
+          color: Theme.of(context).colorScheme.background,
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(30),
             topLeft: Radius.circular(30),
           ),
           boxShadow:
           [
             BoxShadow(
-              offset: Offset(0, -15),
-              color: Color(0xFFDADADA).withOpacity(0.15),
+              offset: const Offset(0, -15),
+              color: const Color(0xFFDADADA).withOpacity(0.15),
               blurRadius: 20,
             ),
           ],
@@ -84,11 +85,11 @@ class CartScreenBottm extends StatelessWidget {
                 children:
                 [
                   Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     height: getProportionateScreenHeight(40),
                     width: getProportionateScreenWidth(40),
                     decoration: BoxDecoration(
-                      color: Color(0xFFF5F6F9),
+                      color: const Color(0xFFF5F6F9),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: SvgPicture.asset(
@@ -100,14 +101,17 @@ class CartScreenBottm extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.6,
                     height: 45,
                     decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.1),
+                      color: const Color(0xFFF5F6F9),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextField(
+                    child: const TextField(
                       decoration: InputDecoration(
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         hintText: 'Add voucher code',
+                        hintStyle: TextStyle(
+                          color: Colors.black38,
+                        ),
                         contentPadding: EdgeInsets.symmetric(
                           horizontal: 16,
                         ),
@@ -126,17 +130,12 @@ class CartScreenBottm extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       text: 'Total:\n',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                      ),
+                      style: Theme.of(context).textTheme.caption,
                       children:
                       [
                         TextSpan(
                           text: '\$${calculateTotalPrice(demoCarts).toStringAsFixed(2)}',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
+                          style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ],
                     ),
@@ -175,7 +174,7 @@ class CartScreenBottm extends StatelessWidget {
           horizontal: 20,
         ),
         decoration: BoxDecoration(
-          color: Color(0xFFFFE6E6),
+          color: const Color(0xFFFFE6E6),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -202,7 +201,7 @@ class CartScreenBottm extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Color(0xFFF5F6F9),
+                  color: const Color(0xFFF5F6F9),
                 ),
                 child: Image.asset(cart.product.images[0]),
               ),
@@ -221,7 +220,7 @@ class CartScreenBottm extends StatelessWidget {
               [
                 Text(
                   cart.product.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                   maxLines: 2,
@@ -232,7 +231,7 @@ class CartScreenBottm extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                       text: '\$${cart.product.price} ',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.red,
                       ),
                       children:

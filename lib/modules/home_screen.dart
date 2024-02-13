@@ -13,6 +13,8 @@ import '../shared/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget
 {
+  const HomeScreen({super.key});
+
 
   @override
   Widget build(BuildContext context)
@@ -45,7 +47,7 @@ class HomeScreen extends StatelessWidget
                             height: 45,
                             decoration: BoxDecoration(
 
-                              color: Colors.grey.withOpacity(0.1),
+                              color: const Color(0xFFF5F6F9),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: TextField(
@@ -54,11 +56,11 @@ class HomeScreen extends StatelessWidget
                                   focusedBorder: InputBorder.none,
                                   hintText: 'Search product',
                                   hintStyle: TextStyle(
-                                    color: Colors.black38,
+                                    color: Theme.of(context).colorScheme.secondary,
                                   ),
                                   prefixIcon: Icon(
                                     Icons.search,
-                                    color: Colors.black38,
+                                    color: Theme.of(context).colorScheme.secondary,
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
                                     horizontal: 16,
@@ -74,9 +76,10 @@ class HomeScreen extends StatelessWidget
                         IconBtnCounter(
                           svgSrc: 'assets/images/Cart.svg',
                           numOfItems: demoCarts.length,
+                          context: context,
                           press: ()
                           {
-                            navigateTo(context, CartScreen());
+                            navigateTo(context, const CartScreen());
                           },
                         ),
                         const SizedBox(
@@ -85,6 +88,7 @@ class HomeScreen extends StatelessWidget
                         IconBtnCounter(
                           svgSrc: 'assets/images/Bell.svg',
                           numOfItems: 2,
+                          context: context,
                           press: (){},
                         ),
                       ],
@@ -103,19 +107,19 @@ class HomeScreen extends StatelessWidget
                         children:
                         [
                           Container(
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                 horizontal: 20,
                               ),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 15
                               ),
                               width: double.infinity,
                               height: 90,
                               decoration: BoxDecoration(
-                                color: Color(0xFF4A3298),
+                                color: const Color(0xFF4A3298),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Text.rich(
+                              child: const Text.rich(
                                 TextSpan(
                                   text: 'A Summer Surprise\n',
                                   style: TextStyle(
@@ -192,17 +196,12 @@ class HomeScreen extends StatelessWidget
                                 [
                                   Text(
                                     'Special for you',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
+                                    style: Theme.of(context).textTheme.titleLarge,
                                   ),
                                   GestureDetector(
                                     child: Text(
                                       'See more',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                      ),
+                                      style: Theme.of(context).textTheme.titleSmall,
                                     ),
                                     onTap: ()
                                     {
@@ -252,17 +251,12 @@ class HomeScreen extends StatelessWidget
                                 [
                                   Text(
                                     'Popular product',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
+                                    style: Theme.of(context).textTheme.titleLarge,
                                   ),
                                   GestureDetector(
                                     child: Text(
                                       'See more',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                      ),
+                                      style: Theme.of(context).textTheme.titleSmall,
                                     ),
                                     onTap: ()
                                     {
@@ -317,6 +311,7 @@ class HomeScreen extends StatelessWidget
     required String svgSrc,
     required int numOfItems,
     required GestureTapCallback press,
+    required context,
   })=>InkWell(
     onTap: press,
     borderRadius: BorderRadius.circular(50),
@@ -324,16 +319,16 @@ class HomeScreen extends StatelessWidget
       alignment: Alignment.topRight,
       children: [
         Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           height: 46,
           width: 46,
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.1),
+          decoration: const BoxDecoration(
+            color: Color(0xFFF5F6F9),
             shape: BoxShape.circle,
           ),
           child: SvgPicture.asset(
             svgSrc,
-            color: Colors.black38,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         if(numOfItems !=0)
@@ -377,7 +372,7 @@ class HomeScreen extends StatelessWidget
           AspectRatio(
             aspectRatio: 1,
             child: Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: const Color(0xFFFFECDF),
                 borderRadius: BorderRadius.circular(10),
@@ -442,13 +437,13 @@ class HomeScreen extends StatelessWidget
                 ),
                 child: Text.rich(
                   TextSpan(
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                     children: [
                       TextSpan(
                         text: '$category\n',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                         ),
                       ),
@@ -485,16 +480,14 @@ class HomeScreen extends StatelessWidget
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color(0xCBCACB).withOpacity(0.1),
+                color: const Color(0x00cbcacb).withOpacity(0.1),
               ),
               child: Image.asset(product.images[0]),
             ),
           ),
           Text(
             product.title,
-            style: TextStyle(
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium,
             maxLines: 2,
           ),
           Row(
@@ -502,7 +495,7 @@ class HomeScreen extends StatelessWidget
             children: [
               Text(
                 '${product.price}\$',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.red,
@@ -520,7 +513,7 @@ class HomeScreen extends StatelessWidget
                   height: 28,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: const Color(0xBDBDBD).withOpacity(0.1),
+                    color: const Color(0x00bdbdbd).withOpacity(0.1),
                   ),
                   child: SvgPicture.asset(
                     product.isFavourite ? 'assets/images/HeartIcon_2.svg' :'assets/images/HeartIcon.svg',

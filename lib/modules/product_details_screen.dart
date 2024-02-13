@@ -1,22 +1,21 @@
 import 'package:e_commerce_app/layout/cubit/cubit.dart';
 import 'package:e_commerce_app/layout/cubit/states.dart';
 import 'package:e_commerce_app/models/Product_model.dart';
-import 'package:e_commerce_app/modules/home_screen.dart';
 import 'package:e_commerce_app/modules/size_config.dart';
 import 'package:e_commerce_app/shared/components/components.dart';
 import 'package:e_commerce_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../layout/e_commerce_layout.dart';
+import '../shared/cubit/cubit.dart';
 
 class ProductDetailsScreen extends StatelessWidget
 {
 
   final Product ?product;
 
-  ProductDetailsScreen({
+  const ProductDetailsScreen({super.key, 
     this.product,
   });
 
@@ -32,117 +31,124 @@ class ProductDetailsScreen extends StatelessWidget
         {
           var cubit = EcommerceCubit.get(context);
           return Scaffold(
-            backgroundColor: const Color(0xFFF5F6F9),
+            backgroundColor: Theme.of(context).colorScheme.onSecondary,
             body: SingleChildScrollView(
               child: Column(
-              children:
-              [
-                CustomeAppBar(rate: '${product!.rating}',context: context),
-                ProductImage(image: product!.images[cubit.imageIndex]),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:
-                  [
-                    Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      height: 48,
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => SmallPreview(images: product!.images[index], index: index, context: context),
-                        separatorBuilder: (context, index) => const SizedBox(
-                          width: 15,
-                        ),
-                        itemCount: product!.images.length,
-                      ),
-                    ),
-                  ],
-                ),
-                TopRoundedContainer(
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                children:
+                [
+                  CustomeAppBar(rate: '${product!.rating}',context: context),
+                  ProductImage(image: product!.images[cubit.imageIndex]),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children:
                     [
-                      ProductDetails(
-                        title: product!.title,
-                        description: product!.description,
-                        context: context,
-                      ),
-                      TopRoundedContainer(
-                        color: const Color(0xFFF5F6F9),
-                        child: Column(
-                          children:
-                          [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                              ),
-                              child: Row(
-                                children:
-                                [
-                                  Container(
-                                    width: MediaQuery.of(context).size.width - 166,
-                                    height: 40,
-                                    child: ListView.separated(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) => ColorSelceted(color: product!.colors![index], index: index, context: context),
-                                      separatorBuilder: (context, index) => const SizedBox(
-                                        width: 2,
-                                      ),
-                                      itemCount: product!.colors!.length,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  RoundedIconBtn(
-                                    press: ()
-                                    {
-                                      cubit.minusCounter();
-                                    },
-                                    icon: Icons.remove,
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text('${cubit.numOfItem}'),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  RoundedIconBtn(
-                                    press: ()
-                                    {
-                                      cubit.plusCounter();
-                                    },
-                                    icon: Icons.add,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            TopRoundedContainer(
-                              color: Colors.white,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  left: SizeConfig.screenWidth! * 0.15,
-                                  right: SizeConfig.screenWidth! * 0.15,
-                                  top: getProportionateScreenWidth(15),
-                                  bottom: getProportionateScreenWidth(40),
-                                ),
-                                child: defaultButton(
-                                  text: 'add to cart',
-                                  function: () {},
-                                ),
-                              ),
-                            ),
-                          ],
+                      Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                        height: 48,
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => SmallPreview(images: product!.images[index], index: index, context: context),
+                          separatorBuilder: (context, index) => const SizedBox(
+                            width: 15,
+                          ),
+                          itemCount: product!.images.length,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-          ),
+                  TopRoundedContainer(
+                    color: Theme.of(context).colorScheme.background,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:
+                      [
+                        ProductDetails(
+                          title: product!.title,
+                          description: product!.description,
+                          context: context,
+                        ),
+                        TopRoundedContainer(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                          child: Column(
+                            children:
+                            [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                child: Row(
+                                  children:
+                                  [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width - 166,
+                                      height: 40,
+                                      child: ListView.separated(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) => ColorSelceted(color: product!.colors![index], index: index, context: context),
+                                        separatorBuilder: (context, index) => const SizedBox(
+                                          width: 2,
+                                        ),
+                                        itemCount: product!.colors!.length,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    RoundedIconBtn(
+                                      context: context,
+                                      press: ()
+                                      {
+                                        cubit.minusCounter();
+                                      },
+                                      icon: Icons.remove,
+                                    ),
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      '${cubit.numOfItem}',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    RoundedIconBtn(
+                                      context: context,
+                                      press: ()
+                                      {
+                                        cubit.plusCounter();
+                                      },
+                                      icon: Icons.add,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              TopRoundedContainer(
+                                color: Theme.of(context).colorScheme.background,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: SizeConfig.screenWidth! * 0.15,
+                                    right: SizeConfig.screenWidth! * 0.15,
+                                    top: getProportionateScreenWidth(15),
+                                    bottom: getProportionateScreenWidth(40),
+                                  ),
+                                  child: defaultButton(
+                                    text: 'add to cart',
+                                    function: () {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -154,17 +160,19 @@ class ProductDetailsScreen extends StatelessWidget
   Widget TopRoundedContainer({
     required Color color,
     required Widget child,
+    double ?height,
   }) => Container(
     margin: const EdgeInsets.only(top: 20),
     padding: const EdgeInsets.only(top: 20),
     width: double.infinity,
+    height: height,
     decoration: BoxDecoration(
       color: color,
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(40),
-        topRight: Radius.circular(40),
-        bottomRight: Radius.circular(40),
-        bottomLeft: Radius.circular(40),
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(35),
+        topRight: Radius.circular(35),
+        bottomRight: Radius.circular(35),
+        bottomLeft: Radius.circular(35),
       ),
     ),
     child: child,
@@ -174,13 +182,14 @@ class ProductDetailsScreen extends StatelessWidget
   Widget RoundedIconBtn({
     required GestureTapCallback press,
     required IconData icon,
+    required context
   })=>SizedBox(
     height: 40,
     width: 40,
     child: MaterialButton(
       onPressed: press,
       padding: const EdgeInsets.only(left: 0),
-      color: Colors.white,
+        color: AppCubit.get(context).isDark ? const Color(0xFFF5F6F9) : Colors.white,
       elevation: 0,
       highlightElevation: 0,
       shape: const CircleBorder(side: BorderSide.none),
@@ -203,16 +212,17 @@ class ProductDetailsScreen extends StatelessWidget
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           RoundedIconBtn(
+            context: context,
             press: ()
             {
-              navigateAndFinsh(context, EcommerceLayout());
+              navigateAndFinsh(context, const EcommerceLayout());
             },
             icon: Icons.arrow_back_ios,
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppCubit.get(context).isDark ? const Color(0xFFF5F6F9) : Colors.white,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -220,6 +230,7 @@ class ProductDetailsScreen extends StatelessWidget
                 Text(
                   rate,
                   style: const TextStyle(
+                    color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -249,7 +260,7 @@ class ProductDetailsScreen extends StatelessWidget
       width: 48,
       height: 48,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFFF5F6F9),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: EcommerceCubit.get(context).imageIndex == index ? KmainColor : Colors.transparent,
@@ -283,9 +294,7 @@ class ProductDetailsScreen extends StatelessWidget
         ),
         child: Text(
           title,
-          style: const TextStyle(
-            fontSize: 20,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       const SizedBox(
@@ -323,8 +332,8 @@ class ProductDetailsScreen extends StatelessWidget
         ),
         child: Text(
           description,
-          style: TextStyle(
-            color: Colors.grey[600],
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppCubit.get(context).isDark ? Colors.white60 : Colors.grey.shade600,
           ),
           maxLines: EcommerceCubit.get(context).isReadMore ?  null : 3,
           overflow: EcommerceCubit.get(context).isReadMore ? TextOverflow.visible : TextOverflow.ellipsis,
@@ -345,12 +354,12 @@ class ProductDetailsScreen extends StatelessWidget
             [
               Text(
                 EcommerceCubit.get(context).isReadMore ? 'See less details' : 'See more details',
-                style: TextStyle(
+                style: const TextStyle(
                   color: KmainColor,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
                 size: 12,
                 color: KmainColor,

@@ -1,9 +1,8 @@
 import 'dart:io';
-import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/layout/cubit/cubit.dart';
-import 'package:e_commerce_app/layout/cubit/states.dart';
-import 'package:e_commerce_app/modules/login%20&%20register/login_screen.dart';
 import 'package:e_commerce_app/shared/bloc_observer.dart';
+import 'package:e_commerce_app/shared/cubit/cubit.dart';
+import 'package:e_commerce_app/shared/cubit/states.dart';
+import 'package:e_commerce_app/shared/network/local/cache_helper.dart';
 import 'package:e_commerce_app/shared/styles/colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +12,13 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:window_manager/window_manager.dart';
 import 'layout/e_commerce_layout.dart';
 
-void main(){
-
-
+void main()async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+  await cacheHelper.init();
+  bool? isDark = cacheHelper.getData(key: 'isDark');
   try {
-    WidgetsFlutterBinding.ensureInitialized();
+
     if(Platform.isWindows)
     {
       WindowManager.instance.setMinimumSize(
@@ -31,25 +32,31 @@ void main(){
   }
 
   Bloc.observer = MyBlocObserver();
-  runApp(const MyApp());
+  runApp(MyApp(
+    isDark: isDark,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
+  final bool? isDark;
+
+  const MyApp({super.key, 
+    this.isDark,
+  });
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EcommerceCubit(),
-      child: BlocConsumer<EcommerceCubit, EcommerceStates>(
+      create: (context) => AppCubit()..changeAppMode(fromShared: isDark),
+      child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) { },
         builder: (context, state)
         {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 color: Colors.white,
                 elevation: 0,
                 centerTitle: true,
@@ -68,11 +75,37 @@ class MyApp extends StatelessWidget {
               ),
               scaffoldBackgroundColor: Colors.white,
               primarySwatch: KmainColor,
+              colorScheme: ColorScheme.light(
+                background: Colors.white,
+                primary: KmainColor,
+                secondary: Colors.black38,
+                onSecondary: const Color(0xFFF5F6F9),
+                onSurface: Colors.black.withOpacity(0.15),
+              ),
               textTheme: TextTheme(
-                bodyText1: TextStyle(
+                titleLarge: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+                titleMedium: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
+                ),
+                titleSmall: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+                bodyLarge: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.black,
+                ),
+                bodyMedium: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+                bodySmall: TextStyle(
+                  color: Colors.white70,
                 ),
               ),
             ),
@@ -81,7 +114,7 @@ class MyApp extends StatelessWidget {
                 color: HexColor('333739'),
                 elevation: 0,
                 centerTitle: true,
-                titleTextStyle: TextStyle(
+                titleTextStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -90,29 +123,48 @@ class MyApp extends StatelessWidget {
                   statusBarColor: HexColor('333739'),
                   statusBarIconBrightness: Brightness.light,
                 ),
-                iconTheme: IconThemeData(
+                iconTheme: const IconThemeData(
                   color: Colors.white,
                 ),
               ),
               scaffoldBackgroundColor: HexColor('333739'),
               primarySwatch: KmainColor,
+              colorScheme: ColorScheme.dark(
+                background: HexColor('333739'),
+                primary: Colors.white,
+                secondary: Colors.grey,
+                onSecondary:  Colors.grey.shade600,
+                onSurface: const Color(0xFFDADADA).withOpacity(0.15),
+              ),
               textTheme: TextTheme(
-                bodyText1: TextStyle(
+                titleLarge: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+                titleMedium: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey.shade600,
+                ),
+                titleSmall: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white60
+                ),
+                bodyLarge: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
-                bodyText2: TextStyle(
+                bodyMedium: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
                 ),
-                caption: TextStyle(
+                bodySmall: TextStyle(
                   color: Colors.white60,
                 ),
               ),
             ),
-            themeMode: EcommerceCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            home: EcommerceLayout(),
+            themeMode: AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            home: const EcommerceLayout(),
           );
         },
       ),

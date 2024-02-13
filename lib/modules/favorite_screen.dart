@@ -1,13 +1,13 @@
 import 'package:e_commerce_app/modules/product_details_screen.dart';
 import 'package:e_commerce_app/modules/size_config.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../layout/e_commerce_layout.dart';
 import '../models/Product_model.dart';
 import '../shared/components/components.dart';
 
 class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
+
 
   @override
   Widget build(BuildContext context)
@@ -15,7 +15,7 @@ class FavoritesScreen extends StatelessWidget {
     SizeConfig.init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'My Favorites',
         ),
       ),
@@ -58,7 +58,7 @@ class FavoritesScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color(0xFFF5F6F9),
+                color: const Color(0xFFF5F6F9),
               ),
               child: Image.asset(product.images[0]),
             ),
@@ -79,7 +79,7 @@ class FavoritesScreen extends StatelessWidget {
               [
                 Text(
                   product.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                   maxLines: 2,
@@ -90,7 +90,7 @@ class FavoritesScreen extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     text: '\$${product.price} ',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.red,
                     ),
                   ),
@@ -114,7 +114,7 @@ class FavoritesScreen extends StatelessWidget {
               height: 28,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xBDBDBD).withOpacity(0.1),
+                color: const Color(0x00bdbdbd).withOpacity(0.1),
               ),
               child: SvgPicture.asset(
                 product.isFavourite ? 'assets/images/HeartIcon_2.svg' :'assets/images/HeartIcon.svg',

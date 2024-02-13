@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserScreen extends StatelessWidget {
+  const UserScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +24,12 @@ class UserScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                 ),
               ),
               leadingWidth: 70,
-              title: Text(
+              title: const Text(
                 'Account',
               ),
               actions: [
@@ -42,7 +44,7 @@ class UserScreen extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: () { },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.check,
                         color: Colors.white,
                       ),
@@ -67,7 +69,7 @@ class UserScreen extends StatelessWidget {
                       widget: Column(
                         children:
                         [
-                          SizedBox(
+                          const SizedBox(
                             width: 100,
                             height: 100,
                             child: CircleAvatar(
@@ -91,7 +93,7 @@ class UserScreen extends StatelessWidget {
                     ),
                     EditItem(
                       title: 'Name',
-                      widget: TextField(
+                      widget: const TextField(
                         decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -119,7 +121,7 @@ class UserScreen extends StatelessWidget {
                               width: 50,
                               height: 50,
                               decoration: BoxDecoration(
-                                color: cubit.gender == 'man' ? KmainColor : Colors.grey.shade200,
+                                color: cubit.gender == 'man' ? KmainColor : const Color(0xFFF5F6F9),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
@@ -142,7 +144,7 @@ class UserScreen extends StatelessWidget {
                               width: 50,
                               height: 50,
                               decoration: BoxDecoration(
-                                color: cubit.gender == 'woman' ? KmainColor : Colors.grey.shade200,
+                                color: cubit.gender == 'woman' ? KmainColor : const Color(0xFFF5F6F9),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(
@@ -160,7 +162,7 @@ class UserScreen extends StatelessWidget {
                     ),
                     EditItem(
                       title: 'Date of birth',
-                      widget: TextField(
+                      widget: const TextField(
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
@@ -175,7 +177,7 @@ class UserScreen extends StatelessWidget {
                     ),
                     EditItem(
                       title: 'Email',
-                      widget: TextField(
+                      widget: const TextField(
                         decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -206,7 +208,7 @@ class UserScreen extends StatelessWidget {
         flex: 2,
         child: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             color: Colors.grey,
           ),

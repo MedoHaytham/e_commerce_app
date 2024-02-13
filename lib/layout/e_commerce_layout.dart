@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/layout/cubit/cubit.dart';
 import 'package:e_commerce_app/layout/cubit/states.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce_app/shared/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,6 +9,8 @@ import '../models/cart model.dart';
 import '../shared/styles/colors.dart';
 
 class EcommerceLayout extends StatelessWidget {
+  const EcommerceLayout({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +28,13 @@ class EcommerceLayout extends StatelessWidget {
               alignment:Alignment.center,
               height: 360 * 0.155,
               decoration: BoxDecoration(
-                  color: cubit.backColor,
+                  color: Theme.of(context).colorScheme.background,
                   boxShadow:
                   [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
+                      color: Theme.of(context).colorScheme.onSurface,
                       blurRadius: 30,
-                      offset: Offset(0, 10),
+                      offset: const Offset(0, 10),
                     ),
                   ]
               ),
@@ -61,8 +63,8 @@ class EcommerceLayout extends StatelessWidget {
                         width: size.width * 0.128,
                         height: index == cubit.currentIndex ? 360 * 0.014 : 0,
                         decoration: BoxDecoration(
-                            color: KmainColor,
-                            borderRadius: BorderRadius.vertical(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: const BorderRadius.vertical(
                               bottom: Radius.circular(10),
                             )
                         ),
@@ -73,12 +75,12 @@ class EcommerceLayout extends StatelessWidget {
                         [
                           if(demoCarts.isNotEmpty && index == 1)
                             Container(
-                              margin: EdgeInsets.only(
+                              margin: const EdgeInsets.only(
                                 left: 3,
                               ),
                               height: 15,
                               width: 15,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.red,
                                 shape: BoxShape.circle,
                               ),
@@ -97,7 +99,7 @@ class EcommerceLayout extends StatelessWidget {
                           SvgPicture.asset(
                             cubit.icons[index],
                             width: 360 * 0.076,
-                            color: index == cubit.currentIndex ? cubit.focusColor : cubit.iconColor,
+                            color: index == cubit.currentIndex ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                           ),
                         ],
                       ),

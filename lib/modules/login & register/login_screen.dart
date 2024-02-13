@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../layout/e_commerce_layout.dart';
 import '../../shared/fade_animation.dart';
-import '../home_screen.dart';
 import '../../shared/styles/colors.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -136,12 +135,11 @@ class LoginScreen extends StatelessWidget {
                                     {
                                       if(formKey.currentState!.validate())
                                       {
-                                        navigateAndFinsh(context,EcommerceLayout());
+                                        navigateAndFinsh(context,const EcommerceLayout());
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      onPrimary: Colors.purpleAccent,
-                                      shadowColor: Colors.purpleAccent,
+                                      foregroundColor: Colors.purpleAccent, shadowColor: Colors.purpleAccent,
                                       elevation: 18,
                                       padding: EdgeInsets.zero,
                                       shape: RoundedRectangleBorder(
