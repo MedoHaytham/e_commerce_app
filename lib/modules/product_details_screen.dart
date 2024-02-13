@@ -82,7 +82,7 @@ class ProductDetailsScreen extends StatelessWidget
                                   children:
                                   [
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width - 166,
+                                      width: MediaQuery.of(context).size.width - 168,
                                       height: 40,
                                       child: ListView.separated(
                                         shrinkWrap: true,
@@ -108,9 +108,6 @@ class ProductDetailsScreen extends StatelessWidget
                                     ),
                                     Text(
                                       '${cubit.numOfItem}',
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                      ),
                                     ),
                                     const SizedBox(
                                       width: 15,
