@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/layout/cubit/cubit.dart';
 import 'package:e_commerce_app/layout/cubit/states.dart';
+import 'package:e_commerce_app/modules/favorite_screen.dart';
 import 'package:e_commerce_app/modules/user_screen.dart';
 import 'package:e_commerce_app/shared/components/components.dart';
 import 'package:e_commerce_app/shared/cubit/cubit.dart';
@@ -82,6 +83,14 @@ class ProfileScreen extends StatelessWidget
                       press: ()
                       {
 
+                      },
+                    ),
+                    SettingsItem(
+                      title: 'Favorites',
+                      icon: Icons.favorite_outline,
+                      press: ()
+                      {
+                        navigateTo(context, FavoritesScreen());
                       },
                     ),
                     SettingsItem(

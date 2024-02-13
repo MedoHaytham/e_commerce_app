@@ -15,6 +15,16 @@ class FavoritesScreen extends StatelessWidget {
     SizeConfig.init(context);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          highlightColor: Colors.transparent,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
+        leadingWidth: 70,
         title: const Text(
           'My Favorites',
         ),

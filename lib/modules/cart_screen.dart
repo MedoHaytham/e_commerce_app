@@ -149,12 +149,12 @@ class CartScreen extends StatelessWidget {
                         Text.rich(
                           TextSpan(
                             text: 'Total:\n',
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.bodySmall,
                             children:
                             [
                               TextSpan(
                                 text: '\$${calculateTotalPrice(demoCarts).toStringAsFixed(2)}',
-                                style: Theme.of(context).textTheme.bodyText2,
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ],
                           ),

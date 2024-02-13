@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/layout/cubit/states.dart';
+import 'package:e_commerce_app/modules/categories_screen.dart';
 import 'package:e_commerce_app/modules/home_screen.dart';
 import 'package:e_commerce_app/modules/favorite_screen.dart';
 import 'package:e_commerce_app/modules/profile_screen.dart';
@@ -19,7 +20,7 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   [
     const HomeScreen(),
     const CartScreenBottm(),
-    const FavoritesScreen(),
+    const CategoriesScreen(),
     const ProfileScreen(),
   ];
 
