@@ -212,7 +212,7 @@ class ProductDetailsScreen extends StatelessWidget
             context: context,
             press: ()
             {
-              navigateAndFinsh(context, const EcommerceLayout());
+              Navigator.pop(context);
             },
             icon: Icons.arrow_back_ios,
           ),
