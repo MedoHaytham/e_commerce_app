@@ -1,7 +1,6 @@
 import 'package:e_commerce_app/layout/cubit/states.dart';
 import 'package:e_commerce_app/modules/categories_screen.dart';
 import 'package:e_commerce_app/modules/home_screen.dart';
-import 'package:e_commerce_app/modules/favorite_screen.dart';
 import 'package:e_commerce_app/modules/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,10 +17,10 @@ class EcommerceCubit extends Cubit<EcommerceStates>
 
   List<Widget> screens =
   [
-    const HomeScreen(),
-    const CartScreenBottm(),
-    const CategoriesScreen(),
-    const ProfileScreen(),
+    HomeScreen(),
+    CartScreenBottm(),
+    CategoriesScreen(),
+    ProfileScreen(),
   ];
 
   List<String> icons =
