@@ -7,8 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../shared/styles/colors.dart';
 
 class CartScreenBottm extends StatelessWidget {
-  const CartScreenBottm({super.key});
-
 
   double calculateTotalPrice(List<Cart> carts) {
     double totalPrice = 0.0;

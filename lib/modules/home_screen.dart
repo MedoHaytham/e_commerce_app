@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/models/Product_model.dart';
 import 'package:e_commerce_app/models/cart%20model.dart';
+import 'package:e_commerce_app/models/categories_model.dart';
 import 'package:e_commerce_app/modules/cart_screen.dart';
 import 'package:e_commerce_app/modules/product_details_screen.dart';
 import 'package:e_commerce_app/shared/components/components.dart';
@@ -141,48 +142,31 @@ class HomeScreen extends StatelessWidget
                           const SizedBox(
                             height: 30,
                           ),
-                          Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
+                          Row(
+                            children:
+                            [
+                              Container(
+                                alignment: Alignment.center,
+                                height: 98,
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.separated(
+                                  physics: const BouncingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
+                                  itemBuilder: (context, index) => CategoryBuilder(demoCategories[index], context, demoCategories[index].isPopular),
+                                  separatorBuilder: (context, index) => demoCategories[index].isPopular ? const SizedBox(
+                                    width: 10,
+                                  ) : const SizedBox(
+                                    width: 0,
+                                  ),
+                                  itemCount: demoCategories.length,
+                                ),
                               ),
-                            //list.........
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children:
-                                [
-                                  CategoryBuilder(
-                                    icon: 'assets/images/Flash.svg',
-                                    label: 'Flash Deal',
-                                    press: () {  },
-                                  ),
-
-                                  CategoryBuilder(
-                                    icon: 'assets/images/Bill.svg',
-                                    label: 'Bill',
-                                    press: () {  },
-                                  ),
-
-                                  CategoryBuilder(
-                                    icon: 'assets/images/Game.svg',
-                                    label: 'Game',
-                                    press: () {  },
-                                  ),
-
-                                  CategoryBuilder(
-                                    icon: 'assets/images/Gift.svg',
-                                    label: 'Daily Gift',
-                                    press: () {  },
-                                  ),
-
-                                  CategoryBuilder(
-                                    icon: 'assets/images/compass.svg',
-                                    label: 'More',
-                                    press: () {  },
-                                  ),
-                                ],
-                              ),
-                            ),
+                            ]
+                          ),
                           const SizedBox(
                             height: 30,
                           ),
@@ -273,16 +257,16 @@ class HomeScreen extends StatelessWidget
                               children:
                               [
                                 Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
                                   alignment: Alignment.center,
-                                  height: 210,
+                                  height: 215,
                                   width: MediaQuery.of(context).size.width,
                                   child: ListView.separated(
                                     physics: const BouncingScrollPhysics(),
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                    ),
                                     itemBuilder: (BuildContext context, index) => ProductCard(demoProducts[index], context, demoProducts[index].isPopular),
                                     separatorBuilder: (BuildContext context, index) =>  demoProducts[index].isPopular ? const SizedBox(
                                       width: 20,
@@ -356,12 +340,15 @@ class HomeScreen extends StatelessWidget
     ),
   );
 
-  Widget CategoryBuilder({
-    required String icon,
-    required String label,
-    required GestureTapCallback press,
-  })=>InkWell(
-    onTap: press,
+  Widget CategoryBuilder(
+      Categories categories,
+      context,
+      bool isPopular,
+  )=> isPopular? InkWell(
+    onTap: ()
+    {
+
+    },
     borderRadius: BorderRadius.circular(10),
     child: Container(
       constraints: const BoxConstraints(maxWidth: 70),
@@ -378,7 +365,7 @@ class HomeScreen extends StatelessWidget
                 borderRadius: BorderRadius.circular(10),
               ),
               child: SvgPicture.asset(
-                icon,
+                categories.icon,
                 color: KmainColor,
               ),
             ),
@@ -387,13 +374,88 @@ class HomeScreen extends StatelessWidget
             height: 5,
           ),
           Text(
-            label,
+            categories.title,
+            style: const TextStyle(
+              fontSize: 13,
+              overflow: TextOverflow.ellipsis
+            ),
+            maxLines: 2,
             textAlign: TextAlign.center,
           ),
         ],
       ),
     ),
-  );
+  ) : const SizedBox.shrink();
+
+  Widget ProductCard(
+      Product product,
+      context,
+      bool isPopular,
+  )=> isPopular? InkWell(
+    borderRadius: BorderRadius.circular(15),
+    onTap: ()
+    {
+      navigateTo(context, ProductDetailsScreen(product: product));
+    },
+    child: SizedBox(
+      width: 140,
+      child: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 1.02,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: const Color(0x00cbcacb).withOpacity(0.1),
+              ),
+              child: Image.asset(product.images[0]),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            product.title,
+            style: Theme.of(context).textTheme.bodyMedium,
+            maxLines: 2,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '${product.price}\$',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.red,
+                ),
+              ),
+              InkWell(
+                borderRadius: BorderRadius.circular(28),
+                onTap: ()
+                {
+
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(7),
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(0x00bdbdbd).withOpacity(0.1),
+                  ),
+                  child: SvgPicture.asset(
+                    product.isFavourite ? 'assets/images/HeartIcon_2.svg' :'assets/images/HeartIcon.svg',
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  ) : const SizedBox.shrink();
 
   Widget SpecialOfferCard({
     required String category,
@@ -460,71 +522,4 @@ class HomeScreen extends StatelessWidget
       ),
     ),
   );
-
-  Widget ProductCard(
-      Product product,
-      context,
-      bool isPopular,
-  )=> isPopular? InkWell(
-    borderRadius: BorderRadius.circular(15),
-    onTap: ()
-    {
-      navigateTo(context, ProductDetailsScreen(product: product));
-    },
-    child: SizedBox(
-      width: 140,
-      child: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 1.02,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: const Color(0x00cbcacb).withOpacity(0.1),
-              ),
-              child: Image.asset(product.images[0]),
-            ),
-          ),
-          Text(
-            product.title,
-            style: Theme.of(context).textTheme.bodyMedium,
-            maxLines: 2,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '${product.price}\$',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
-                ),
-              ),
-              InkWell(
-                borderRadius: BorderRadius.circular(28),
-                onTap: ()
-                {
-
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(7),
-                  width: 28,
-                  height: 28,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: const Color(0x00bdbdbd).withOpacity(0.1),
-                  ),
-                  child: SvgPicture.asset(
-                    product.isFavourite ? 'assets/images/HeartIcon_2.svg' :'assets/images/HeartIcon.svg',
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  ) : const SizedBox.shrink();
 }
