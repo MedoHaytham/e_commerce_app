@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
                 onSecondary: const Color(0xFFF5F6F9),
                 onSurface: Colors.black.withOpacity(0.15),
               ),
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 titleLarge: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -131,13 +131,13 @@ class MyApp extends StatelessWidget {
               primarySwatch: KmainColor,
               colorScheme: ColorScheme.dark(
                 background: HexColor('333739'),
-                primary: Colors.white,
+                primary: KmainColor,
                 secondary: Colors.grey,
                 onSecondary:  Colors.grey.shade600,
                 onSurface: const Color(0xFFDADADA).withOpacity(0.15),
               ),
               textTheme: TextTheme(
-                titleLarge: TextStyle(
+                titleLarge: const TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                 ),
@@ -145,20 +145,20 @@ class MyApp extends StatelessWidget {
                   fontSize: 18,
                   color: Colors.grey.shade600,
                 ),
-                titleSmall: TextStyle(
+                titleSmall: const TextStyle(
                   fontSize: 16,
                   color: Colors.white60
                 ),
-                bodyLarge: TextStyle(
+                bodyLarge: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
-                bodyMedium: TextStyle(
+                bodyMedium: const TextStyle(
                   fontSize: 16,
                   color: Colors.white,
                 ),
-                bodySmall: TextStyle(
+                bodySmall: const TextStyle(
                   color: Colors.white60,
                 ),
               ),

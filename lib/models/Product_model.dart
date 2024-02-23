@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Product {
   final int id;
-  final String title, description;
+  final String title, description, category;
   final List<String> images;
   final List<Color> ?colors;
   final double rating, price;
@@ -11,6 +11,7 @@ class Product {
   Product({
     required this.id,
     required this.images,
+    required this.category,
     this.colors,
     this.rating = 0.0,
     this.isFavourite = false,
@@ -34,6 +35,7 @@ List<Product> demoProducts = [
       "assets/images/ps4_console_white_3.png",
       "assets/images/ps4_console_white_4.png",
     ],
+
     colors:
     [
       const Color(0xFFF6625E),
@@ -41,6 +43,7 @@ List<Product> demoProducts = [
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Gaming',
     title: "Wireless Controller for PS4™",
     price: 64.99,
     description: description,
@@ -61,6 +64,7 @@ List<Product> demoProducts = [
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Sports & Outdoors',
     title: "Nike Sport White - Man Pant",
     price: 50.5,
     description: description,
@@ -80,6 +84,7 @@ List<Product> demoProducts = [
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Sports & Outdoors',
     title: "Gloves XC Omega - Polygon",
     price: 36.55,
     description: description,
@@ -93,17 +98,18 @@ List<Product> demoProducts = [
       "assets/images/WirelessHeadset.png",
 
     ],
-    colors: [
+    colors:
+    [
       const Color(0xFFF6625E),
       const Color(0xFF836DB8),
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Device & Electronics',
     title: "Logitech Head",
     price: 20.20,
     description: description,
     rating: 4.1,
-    isFavourite: true,
   ),
   Product(
     id: 1,
@@ -120,6 +126,7 @@ List<Product> demoProducts = [
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Gaming',
     title: "Wireless Controller for PS4™",
     price: 64.99,
     description: description,
@@ -138,6 +145,7 @@ List<Product> demoProducts = [
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Sports & Outdoors',
     title: "Nike Sport White - Man Pant",
     price: 50.5,
     description: description,
@@ -149,12 +157,14 @@ List<Product> demoProducts = [
     [
       "assets/images/glap.png",
     ],
-    colors: [
+    colors:
+    [
       const Color(0xFFF6625E),
       const Color(0xFF836DB8),
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Sports & Outdoors',
     title: "Gloves XC Omega - Polygon",
     price: 36.55,
     description: description,
@@ -174,6 +184,7 @@ List<Product> demoProducts = [
       const Color(0xFFDECB9C),
       Colors.white,
     ],
+    category: 'Device & Electronics',
     title: "Logitech Head",
     price: 20.20,
     description: description,

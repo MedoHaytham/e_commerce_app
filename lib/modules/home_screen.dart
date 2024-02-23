@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget
                                     Icons.search,
                                     color: Theme.of(context).colorScheme.secondary,
                                   ),
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 16,
                                     vertical: 8,
                                   )

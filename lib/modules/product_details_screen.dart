@@ -7,7 +7,6 @@ import 'package:e_commerce_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../layout/e_commerce_layout.dart';
 import '../shared/cubit/cubit.dart';
 
 class ProductDetailsScreen extends StatelessWidget
@@ -36,7 +35,7 @@ class ProductDetailsScreen extends StatelessWidget
               child: Column(
                 children:
                 [
-                  CustomeAppBar(rate: '${product!.rating}',context: context),
+                  CustomAppBar(rate: '${product!.rating}',context: context),
                   ProductImage(image: product!.images[cubit.imageIndex]),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +86,7 @@ class ProductDetailsScreen extends StatelessWidget
                                       child: ListView.separated(
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
-                                        itemBuilder: (context, index) => ColorSelceted(color: product!.colors![index], index: index, context: context),
+                                        itemBuilder: (context, index) => ColorSelected(color: product!.colors![index], index: index, context: context),
                                         separatorBuilder: (context, index) => const SizedBox(
                                           width: 2,
                                         ),
@@ -197,7 +196,7 @@ class ProductDetailsScreen extends StatelessWidget
     ),
   );
 
-  Widget CustomeAppBar({
+  Widget CustomAppBar({
     required String rate,
     context
   })=>SafeArea(
@@ -368,7 +367,7 @@ class ProductDetailsScreen extends StatelessWidget
     ],
   );
 
-  Widget ColorSelceted({
+  Widget ColorSelected({
     required Color color,
     required int index,
     required BuildContext context,
