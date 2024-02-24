@@ -124,7 +124,7 @@ final List<Category> forYouItems = [
   ),
 ];
 
-/*---------------- Grocery Categry Items ---------------*/
+/*---------------- Grocery Category Items ---------------*/
 
 final List<Category> groceryItems = [
   Category(
@@ -218,7 +218,7 @@ final List<Category> appliancesItems = [
     'https://myborosil.com/cdn/shop/products/my-borosil-juicers-healthpro-cold-press-slow-juicer-29488816750730.jpg?v=1677191572',
   ),
   Category(
-    catName: 'Washing Mashine',
+    catName: 'Washing Machine',
     catImageUrl:
     'https://whirlpoolindia.vtexassets.com/arquivos/ids/167574/1.png?v=638320917724870000',
   ),
