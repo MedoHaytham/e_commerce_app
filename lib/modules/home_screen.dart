@@ -146,7 +146,7 @@ class HomeScreen extends StatelessWidget
                             children:
                             [
                               Container(
-                                alignment: Alignment.center,
+                                alignment: Alignment.centerLeft,
                                 height: 98,
                                 width: MediaQuery.of(context).size.width,
                                 child: ListView.separated(

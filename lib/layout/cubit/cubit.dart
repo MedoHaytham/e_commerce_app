@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../modules/cart_screen_bottom.dart';
+import '../../modules/new_categories_screen.dart';
 
 class EcommerceCubit extends Cubit<EcommerceStates>
 {
@@ -19,7 +20,7 @@ class EcommerceCubit extends Cubit<EcommerceStates>
   [
     HomeScreen(),
     CartScreenBottm(),
-    CategoriesScreen(),
+    CatScreen(),
     ProfileScreen(),
   ];
 
@@ -100,4 +101,15 @@ class EcommerceCubit extends Cubit<EcommerceStates>
     emit(ChangeWomanState());
   }
 
+  int catIndex = 0;
+  int preIndex = 0;
+  int postIndex = 1;
+
+  void changeCategoryItem(int index)
+  {
+    catIndex = index;
+    preIndex = catIndex - 1;
+    postIndex = catIndex + 1;
+    emit(changeCategoryItemState());
+  }
 }

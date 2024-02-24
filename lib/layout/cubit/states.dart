@@ -21,3 +21,5 @@ class ChangeManState extends EcommerceStates{}
 class ChangeWomanState extends EcommerceStates{}
 
 class EcommerceChangeModeState extends EcommerceStates{}
+
+class changeCategoryItemState extends EcommerceStates{}
